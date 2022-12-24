@@ -114,9 +114,9 @@ async fn web_reachable(urls: Vec<String>, timeout_seconds: u64, verbose: bool) -
 }
 
 fn send_error_handler(e: SendError<Result<&str, &str>>) -> String {
-  println!("send error detected: {}", e);
   e.to_string()
 }
+
 #[cfg(test)]
 mod tests {
   use super::*;
