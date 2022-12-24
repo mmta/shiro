@@ -1,0 +1,110 @@
+name: CI - Self Hosted
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    branches:
+      - master
+jobs:
+  check-versions:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [Linux]
+    runs-on: ${{ matrix.platform }}
+    if: |
+      ! contains(github.event.head_commit.message, '[skip ci]')
+    outputs:
+      should_release: ${{ steps.comp_ver.outputs.should_release }}
+      current_version: ${{ steps.comp_ver.outputs.current_version }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: cardinalby/git-get-release-action@1.2.4
+        id: check_rel
+        name: get latest release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          latest: true
+          prerelease: false
+          doNotFailIfNotFound: true
+      - name: compare versions
+        id: comp_ver
+        env:
+          REL_TAG: ${{ steps.check_rel.outputs.tag_name }}
+        run: |
+          cd scripts
+          npm ci
+          node exec_versions.js
+
+  publish-new-version:
+    needs: check-versions
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [Windows, Linux, macOS]
+    if: needs.check-versions.outputs.should_release == 'true'
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+      - name: setup rust
+        uses: hecrj/setup-rust-action@v1.4.1
+        with:
+          rust-version: stable
+          components: clippy
+
+      - name: set up cargo cache
+        uses: actions/cache@v3
+        continue-on-error: false
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: install dependencies (ubuntu only)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf nettle-dev
+
+      - name: set up homebrew (macos only)
+        if: runner.os == 'macOS'
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: install dependencies (macos only)
+        if: runner.os == 'macOS'
+        run: brew install pkgconfig nettle
+
+      - name: install app dependencies
+        run: |
+          npm install
+          npm run tauri icon src-tauri/icons/app-icon.png
+
+      - name: publish draft release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NETTLE_STATIC: "yes"
+        with:
+          tagName: v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
+          releaseName: "v__VERSION__"
+          releaseBody: >
+            See the assets to download this version and install. Download the correct installer for your
+             OS: `.msi` for Windows, `.dmg` for MacOS, `.deb` for Ubuntu, and `.AppImage` for other Linux
+             desktops. This version has been tested on Windows 11, MacOS 12, and Ubuntu 22.04 LTS.'
+          releaseDraft: true
+          prerelease: false

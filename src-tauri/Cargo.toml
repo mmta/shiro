@@ -1,0 +1,47 @@
+[package]
+name = "shiro"
+version = "1.0.0"
+description = "Secure savings in Bitcoin"
+rust-version = "1.66"
+edition = "2021"
+
+[build-dependencies]
+tauri-build = {version = "1.2", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = {version = "1.2", features = ["cli", "dialog-ask", "dialog-save", "fs-write-file", "shell-open"] }
+anyhow = "1.0.66"
+bdk = { version = "0.25.0", features = ["all-keys"] }
+zxcvbn = "2.2.1"
+passphrase_lib = "1.0.4"
+xyzpub = "0.3.0"
+regex = "1.7.0"
+dirs = "4.0.0"
+tokio = { version = "1.23.0", features = ["macros"] }
+random-string = "1.0.0"
+base64="0.13.1"
+reqwest = { version = "0.11.13", default-features = false, features = ["rustls-tls"] }
+
+[target.'cfg(target_family = "unix")'.dependencies]
+sequoia-openpgp = { version = "*", default-features = false, features = ["crypto-nettle", "compression"] }
+
+# for Windows
+[target.'cfg(target_family = "windows")'.dependencies]
+sequoia-openpgp = { version = "*", default-features = false, features = ["crypto-cng", "compression"] }
+
+[features]
+# by default Tauri runs in production mode
+# when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL
+default = ["custom-protocol"]
+# this feature is used used for production builds where `devPath` points to the filesystem
+# DO NOT remove this
+custom-protocol = ["tauri/custom-protocol"]
+
+[dev-dependencies]
+scopeguard = "1.1.0"
+
+# this isn't maintained by the author
+[patch.crates-io]
+passphrase_lib = { git = 'https://github.com/mmta/passphrase_lib' }

@@ -1,0 +1,16 @@
+{
+  "title": "Perawatan",
+  "p-0-1": "Ketiga langkah sebelumnya telah memberikan kamu akses yang aman dan terjaga ke recovery phrase dan passphrase Bitcoin. Kedua kunci rahasia tersebut adalah satu-satunya hal yang diperlukan untuk mengaktifkan watch-only wallet dan offline signer, yang keduanya dapat menggunakan software terbuka tanpa tergantung pada produk dan layanan tertentu.",
+  "p-0-2": "Ke depannya, konfigurasi ini hanya akan memerlukan review tahunan untuk mengecek apakah ada hal yang perlu diperbaharui. Contoh hal-hal yang akan memerlukan pembaharuan:",
+  "p-0-2-1": "Adanya kecurigaan akan intrusi keamanan terkait offline signer, yang berarti sebagai langkah pencegahan, kamu perlu membuat recovery phrase baru dan memindahkan seluruh koin yang ada ke wallet baru.",
+  "p-0-2-2": "Penambahan/penggantian penyedia jasa penyimpanan data di cloud.",
+  "p-0-2-3": "Kerusakan/kehilangan USB flash disk.",
+  "p-0-2-4": "Terobosan di bidang kriptografi quantum atau lainnya yang membuat enkripsi GnuPG tidak lagi bisa diandalkan.",
+  "p-0-2-5": "Bencana besar yang melumpuhkan jaringan Bitcoin, atau bahkan jaringan Internet ☹️ ...",
+  "p-0-3": "Di luar itu, konfigurasi ini harusnya akan dapat memberikan tingkat keamanan dan jaminan yang lebih tinggi, khususnya jika dibandingkan dengan menyimpan tabungan jangka panjang di layanan atau produk kripto terpusat.",
+  "p-0-4": "Terakhir, saat nanti jumlah tabungan Bitcoin kamu telah cukup substansial, pertimbangkan juga untuk mengadopsi jenis proteksi yang lebih tinggi seperti:",
+  "p-0-4-1": "Menjalankan node Bitcoin sendiri, agar privacy data lebih terjaga.",
+  "p-0-4-2": "Pelajari tentang CoinJoin atau konsep perlindungan privacy tingkat tinggi serupa yang akan dapat mengaburkan jejak antara alamat dompet kamu dan alamat akun di perusahaan broker/bursa, ataupun alamat serupa lainnya.",
+  "p-0-4-3": "Menyiapkan sistem yang akan dapat memastikan ahli-waris kamu dapat mengakses tabungan setelah kamu meninggal.",
+  "p-0-5": ""
+}

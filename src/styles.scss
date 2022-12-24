@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+@import 'tippy.js/dist/tippy.css';
+
+.fa-bitcoin {
+  color: rgb(242, 169, 0);
+}
+
+.btc-font {
+  font-family: 'Ubuntu';
+  font-style: italic;
+}
+
+.cbox {
+  accent-color: rgb(242, 169, 0);
+}
+
+input[type=checkbox] {
+  width: 12px !important;
+  height: 12px !important;
+  outline: 1px solid rgb(242, 169, 0);
+  box-shadow: none;
+  font-size: 2em;
+}
+
+ul {
+  list-style-type: square !important;
+  ;
+}
+
+.wrap {
+  overflow-wrap: break-word !important;
+}
+
+body {
+  counter-reset: ct2 ct3
+}
+
+$nest: null;
+
+@for $i from 2 through 3 {
+  h#{$i} {
+    counter-increment: ct#{$i};
+
+    &:before {
+      content: $nest counter(ct#{$i}) ". ";
+    }
+  }
+
+  $nest: $nest counter(ct#{$i}) ".";
+}
+
+@import "../node_modules/bulma/sass/utilities/initial-variables.sass";
+@import "../node_modules/bulma/sass/utilities/functions.sass";
+
+$family-sans-serif: 'Roboto', sans-serif;
+$control-border-width: 2px;
+
+$warning: rgb(242, 169, 0) !default;
+
+$bread-item: hsl(0, 0%, 86%);
+$link-hover: rgb(242, 169, 0);
+$text-strong: bold;
+$breadcrumb-item-color: $bread-item !default;
+$breadcrumb-item-hover-color: $link-hover !default;
+$breadcrumb-item-active-color: $text-strong !default;
+
+@import "../node_modules/bulma/bulma.sass";

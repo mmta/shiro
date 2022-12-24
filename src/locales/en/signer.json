@@ -1,0 +1,8 @@
+{
+  "title": "Shiro <1></1> Offline Signer",
+  "p-0-1": "Make sure <1>{{recFile}}</1> is present, contains the Bitcoin secret phrases, and is protected with the correct PGP passphrase.",
+  "p-0-2": "Copy the incomplete transaction code to the text area below (use USB flash drive, or WhatsApp web chat to yourself, etc.).",
+  "p-0-3": "Disconnect this computer from the network.",
+  "p-0-4": "Enter your PGP passphrase to unlock the file in the field below.",
+  "p-0-5": "Click on the button to sign the transaction."
+}

@@ -1,0 +1,11 @@
+{
+  "name": "exec_versions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exec_versions.js",
+  "scripts": {},
+  "dependencies": {
+    "compare-versions": "^6.0.0-rc.1",
+    "toml": "^3.0.0"
+  }
+}

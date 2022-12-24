@@ -1,0 +1,14 @@
+{
+  "title": "Secure saving in <1></1>",
+  "p-0-1": "This app provides 3 simple steps for you to start taking self-custody of your bitcoins, securely and safely years into the future. It is best practice not to store long-term holdings on exchanges platform to avoid potential insolvency, fraud, and security breach risks, that have all happened many times in the past.",
+  "p-0-2": "The problem is good and open Bitcoin self-custody tools require a steep learning curve and have too many concepts and options to understand. On the other end, \"user-friendly\" apps tend to downplay self-custody risks in order to streamline the on-boarding process.",
+  "p-0-3": "This app addresses those issues by providing just enough knowledge and security awareness, and a guided practice on how to securely transfer bitcoins. The following principles are carefully considered so that the content hopefully will be applicable and relevant long into the future:",
+  "h-1": "Simple is more secure",
+  "p-1-1": "Simple security procedure that is to understand and follow consistently, typically achieve much better results over the more complex ones. For that reason, this guide intentionally avoid unnecessary features and jargons that are not relevant to simple saving in Bitcoin.",
+  "h-2": "Minimise reliance on others (self-sovereignity)",
+  "p-2-1": "The Bitcoin network doesn't require you to trust, ask permission, or rely on anyone else. Unlike any other assets, intermediaries between you and the Bitcoin network will just introduce unnecessary third-party risks, whose likelihood and impact tend to increase over time. This guide therefore doesn't rely on a unique software, hardware, or service provider because even the best projects and companies may fail given enough time.",
+  "p-2-2": "This principle is also the reason why this guide focus only on Bitcoin. The alternative cryptocurrencies either have much smaller network and hence more uncertain future, or have a central governing body (a foundation, a company, a DAO, etc.) that can make radical changes to the system, which makes them more appropriate as an investment/speculation that needs active management rather than longer term saving.",
+  "h-3": "Resilience to catastrophic risks",
+  "p-3-1": "Long term saving strategy must consider high impact risks that may seem improbable, yet much more likely to happen at least once for the majority of people within their life time. These risks include physical violence/force/confiscation from the powers that be, fraudulent or bankrupt companies (crypto or otherwise), compromised or unfair legal system, social riots, natural disasters.",
+  "p-3-2": "All of those lead to solutions that don't rely on physical security alone, or require that the prevailing political/financial/natural condition to stay the same over time."
+}

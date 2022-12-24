@@ -1,0 +1,83 @@
+name: PR
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  check-versions:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [Linux]
+        # platform: [ ubuntu-latest ]
+    runs-on: ${{ matrix.platform }}
+    if: |
+      ! startsWith(github.head_ref, 'sh-') &&
+      ! contains(github.event.head_commit.message, '[skip ci]')
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: compare versions
+        id: comp_ver
+        run: |
+          cd scripts
+          npm ci
+          node exec_versions.js
+
+  test:
+    needs: check-versions
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, ubuntu-20.04, windows-latest]
+    # use the matrix platform above only when the source branch name DOESNT start with 'sh-'
+    # other branches will use github runner
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: setup rust
+        uses: hecrj/setup-rust-action@v1.4.1
+        with:
+          rust-version: stable
+          components: clippy
+      - name: install dependencies (ubuntu only)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf lcov nettle-dev
+      - name: set up homebrew (macos only)
+        if: runner.os == 'macOS'
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: install dependencies (macos only)
+        if: runner.os== 'macOS'
+        run: brew install pkgconfig nettle
+      - name: install app dependencies and build next app
+        run: |
+          npm ci
+          npm run tauri icon src-tauri/icons/app-icon.png
+          npm run build
+      - name: run lint (ubuntu only)
+        if: runner.os == 'Linux'
+        run: npm run lint
+      - name: run tests
+        run: npm run test
+      - name: generate coverage report (ubuntu only)
+        if: runner.os == 'Linux'
+        run: |
+          cargo install cargo-llvm-cov
+          npm run coverage
+          ./scripts/gen_lcov_report.sh
+      - name: upload coverage to Codecov (ubuntu only)
+        if: runner.os == 'Linux'
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          flags: unittests
+          files: lcov_report/merged.info

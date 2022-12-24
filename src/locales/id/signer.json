@@ -1,0 +1,8 @@
+{
+  "title": "Shiro <1></1> Offline Signer",
+  "p-0-1": "Pastikan file <1>{{recFile}}</1> tersedia, dan file tersebut berisi kunci-kunci rahasia Bitcoin",
+  "p-0-2": "Salin kode transaksi dari watch-only wallet ke area berikut (kirim kode lewat USB flash drive, chat WhatsApp web ke diri sendiri, atau cara lainnya).",
+  "p-0-3": "Putuskan hubungan komputer ke jaringan",
+  "p-0-4": "Masukkan kunci rahasia untuk membuka file PGP",
+  "p-0-5": "Klik tombol untuk menandatangani transaksi"
+}

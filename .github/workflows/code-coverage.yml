@@ -1,0 +1,65 @@
+name: Codecov
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - src/**
+      - src-tauri/src/**
+  workflow_dispatch:
+jobs:
+  update:
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [Linux]
+        # platform: [ ubuntu-latest ]
+    if: "! contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+      - name: setup rust
+        uses: hecrj/setup-rust-action@v1.4.1
+        with:
+          rust-version: stable
+      - name: Set up cargo cache
+        uses: actions/cache@v3
+        continue-on-error: false
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: ${{ runner.os }}-cargo-
+
+      - name: install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf lcov nettle-dev
+
+      - name: build nextjs app
+        run: |
+          npm install
+          npm run tauri icon src-tauri/icons/app-icon.png
+          npm run build
+
+      - name: generate coverage report
+        run: |
+          cargo install cargo-llvm-cov
+          npm run coverage
+          ./scripts/gen_lcov_report.sh
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          flags: unittests
+          files: lcov_report/merged.info

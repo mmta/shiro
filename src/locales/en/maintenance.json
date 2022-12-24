@@ -1,0 +1,16 @@
+{
+  "title": "Maintenance",
+  "p-0-1": "The previous 3 steps should give you a secure and highly available access to your Bitcoin recovery phrase and passphrase. Those two are the only thing you'll need to (re)activate a watch-only wallet and an offline signer, both of which can be setup using open software that have no reliance on any proprietary products or services.",
+  "p-0-2": "Going forward this setup should only need an annual review to check if anything needs to be updated. Example of things that will require an update:",
+  "p-0-2-1": "Suspected security breach related to the offline signer, which means as a precaution you will then need to create a new recovery phrase and move all of your coins into the new wallet.",
+  "p-0-2-2": "Adding/replacing cloud storage providers.",
+  "p-0-2-3": "Broken/missing USB thumb drives.",
+  "p-0-2-4": "Breakthrough in quantum cryptography that renders GnuPG encryption obsolete.",
+  "p-0-2-5": "A catastrophe that broke the Bitcoin network or even the Internet ☹️ ...",
+  "p-0-3": "Otherwise, this setup should give you much higher security and assurance especially compared to storing your long term saving in a centralised crypto services and products.",
+  "p-0-4": "Later on as your Bitcoin holding becomes more substantial, consider also adopting some of the more advanced protection such as:",
+  "p-0-4-1": "Running your own Bitcoin node for even higher level of privacy.",
+  "p-0-4-2": "Learn about CoinJoin and similar advanced privacy-protection mechanism in Bitcoin that can obfuscate the link between your cold wallet addresses and your KYC account on the exchange, or other similar traces.",
+  "p-0-4-3": " Setting up a system that ensure your heir/estate can safely recover your coins after you die.",
+  "p-0-5": ""
+}
