@@ -78,7 +78,7 @@ export default function Sign () {
 
   const signPsbt = async (passphrase, psbt) => {
     try {
-      if (await alertNetworkConnection(setGpLoading)) return
+      if (await alertNetworkConnection(setGpLoading)) return false
       const x = context.passphrase ? context.passphrase : passphrase
       const y = context.psbt ? context.psbt : psbt
       const [signedTx, signedP] = await invoke('sign_psbt', {

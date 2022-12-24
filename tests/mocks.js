@@ -55,6 +55,7 @@ export const ctx = {
   setPassphrase: () => '',
   setQrSegwit: () => '',
   setQrZpub: () => '',
+  setPsbt: () => '',
   setPassphraseReady: () => true,
   setLoaded: () => true
 }

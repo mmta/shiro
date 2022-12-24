@@ -52,8 +52,19 @@ describe('Sign page', () => {
     })
     renderer(<Sign />)
 
+    ctx.passphrase = 'from other page'
+    ctx.signed = 'from other page'
+
     const inpPassphrase = screen.queryByTestId('inpPassphrase')
     const inpPsbt = screen.queryByTestId('inpPsbt')
+    fireEvent.change(inpPassphrase, {
+      target: { value: valid.passphrase }
+    })
+    fireEvent.change(inpPsbt, { target: { value: valid.psbt } })
+
+    ctx.passphrase = ''
+    ctx.signed = ''
+
     fireEvent.change(inpPassphrase, {
       target: { value: valid.passphrase }
     })
