@@ -1,6 +1,7 @@
 # Shiro: Secure saving in Bitcoin
 
-[![CI](https://github.com/mmta/shiro/actions/workflows/publish-self-hosted.yaml/badge.svg)](https://github.com/mmta/shiro/actions/workflows/publish-self-hosted.yaml) [![codecov](https://codecov.io/gh/mmta/shiro/branch/master/graph/badge.svg?token=2MXPPPDZEN)](https://codecov.io/gh/mmta/shiro) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+[![CI](https://github.com/mmta/shiro/actions/workflows/publish.yaml/badge.svg)](https://github.com/mmta/shiro/actions/workflows/publish.yaml)
+[![codecov](https://codecov.io/gh/mmta/shiro/branch/master/graph/badge.svg?token=2MXPPPDZEN)](https://codecov.io/gh/mmta/shiro) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
 This app provides a step-by-step guide for the average Bitcoin savers on how to securely and safely self-custody their coins.
 
