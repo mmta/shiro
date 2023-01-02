@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [Linux]
-        # platform: [ ubuntu-latest ]
+        # platform: [Linux]
+        platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:

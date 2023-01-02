@@ -4,8 +4,6 @@ on:
     branches:
       - master
   workflow_dispatch:
-    branches:
-      - master
 jobs:
   check-versions:
     strategy:
@@ -14,6 +12,7 @@ jobs:
         platform: [Linux]
     runs-on: ${{ matrix.platform }}
     if: |
+      startsWith(github.head_ref, 'sh-') &&
       ! contains(github.event.head_commit.message, '[skip ci]')
     outputs:
       should_release: ${{ steps.comp_ver.outputs.should_release }}
