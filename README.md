@@ -59,9 +59,11 @@ First fulfil the prerequisites for [Tauri framework](https://tauri.app/), which 
 
 ```shell
 npm install
+npm run tauri icon src-tauri/icons/app-icon.png
 npm run tauri dev
 npm run tauri build
 ```
+See the example in this github workflow if you're missing a specific system requirement: https://github.com/mmta/shiro/blob/1875044f0017a4e2a0af659e6b7c9beff13b6816/.github/workflows/publish.yaml#L44 
 
 ### Security
 
