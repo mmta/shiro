@@ -12,6 +12,7 @@ Example screenshot:
 
 ![Screenshot](docs/screenshot.png)
 
+<!--- This section is only for those curious enough to peek ;)
 ## Motivation
 
 I couldn't in good conscience recommend a safe and secure adoption path for the average non-technical person interested in Bitcoin.
@@ -19,6 +20,7 @@ I couldn't in good conscience recommend a safe and secure adoption path for the 
 The whole crypto space just have too many confusing terms, vulnerabilities and exploits, platform risks, self-custody risks, and outright scams and frauds, so I've always just said, "Stay away unless you're tech-savvy enough, have lots of time to learn, and can actively manage your position."
 
 This app allows me now to say, "If you really want to start, buy small amount of bitcoin from <*insert a locally-regulated and currently-seems-solvent crypto exchange*>, download Shiro, and then follow the instructions in there."
+-->
 
 ## Distinctive features
 
